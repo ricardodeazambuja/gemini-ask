@@ -1,0 +1,14 @@
+include README.md
+include LICENSE
+include requirements.txt
+include MANIFEST.in
+
+recursive-include chrome_gemini_automation *.py
+recursive-include examples *.py *.md
+recursive-include tests *.py
+
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude __pycache__
+global-exclude *.so
+global-exclude .git*

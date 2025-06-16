@@ -1,0 +1,6 @@
+# Core dependencies
+websocket-client>=1.0.0
+requests>=2.25.0
+
+# Optional dependencies for enhanced functionality
+typing-extensions>=3.10.0; python_version<"3.8"

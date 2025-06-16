@@ -1,0 +1,103 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# gemini-ask specific
+# User configuration files
+.gemini_prompt
+
+# Debug and development artifacts
+debug_*.py
+debug_*.png
+debug_*.html
+debug_*.json
+test_*.png
+*.png
+*.html
+capture_*.py
+simple_*.py
+explore_*.py
+hierarchy_*.py
+focus_*.py
+*_analysis.py
+*_debug.py
+*_capture.py
+
+# Development files
+comprehensive_*.md
+next_steps.txt
+SESSION_REPORT.md
+conversation_*.html
+
+# Temporary test files
+test.txt
+test.py
+temp_*
