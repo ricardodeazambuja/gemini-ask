@@ -102,7 +102,7 @@ gemini-ask "How does WiFi work?"
 
 ### Method 1: pip (Recommended)
 ```bash
-pip install gemini-ask
+pip install git+https://github.com/ricardodeazambuja/gemini-ask.git
 ```
 
 ### Method 2: From Source
@@ -300,7 +300,6 @@ Found a bug or want to contribute?
 
 - **Bug Reports**: [GitHub Issues](https://github.com/ricardodeazambuja/gemini-ask/issues)
 - **Source Code**: [GitHub Repository](https://github.com/ricardodeazambuja/gemini-ask)
-- **Documentation**: This README and [CLI Usage Guide](CLI_USAGE.md)
 
 ## License
 
