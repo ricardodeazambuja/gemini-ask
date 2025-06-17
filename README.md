@@ -175,6 +175,143 @@ gemini-ask --typing-speed 0.2 "Question"   # Custom typing speed
 gemini-ask --minimized "Question"           # Start minimized
 ```
 
+## Using with Gemini Pro Subscription
+
+By default, **gemini-ask is completely secure** - it creates a temporary, isolated Chrome profile that contains no personal data, cookies, or login sessions from your main browser. This temporary profile is deleted when Chrome closes.
+
+However, if you have a **Gemini Pro subscription** and want to access Pro features via gemini-ask, you'll need to use a Chrome instance that's logged into your Google account. This requires special security considerations.
+
+### 🔒 Security Warning
+
+⚠️ **CRITICAL SECURITY NOTICE**  
+When Chrome runs with `--remote-debugging-port`, **ANY application on your computer gets FULL ACCESS to:**
+- All open browser tabs and their content
+- Cookies, passwords, and active login sessions  
+- Ability to navigate to any website as you
+- Read and modify any webpage content
+- Access to all browser data and history
+
+**NEVER enable remote debugging on browsers with:**
+- Banking or financial accounts
+- Work or corporate accounts  
+- Personal email or social media
+- Any sensitive personal data
+
+### 🎯 Recommended Secure Setup
+
+The safest way to use Gemini Pro with gemini-ask:
+
+#### Step 1: Create a Dedicated Google Account
+```bash
+# Create a new Google account specifically for gemini-ask
+# Use an email like: your-name-gemini@gmail.com
+```
+
+#### Step 2: Share Gemini Pro Access
+1. Add the new account to your **Google One family plan**
+2. This gives the dedicated account Gemini Pro access
+3. No access to your personal emails, files, or data
+
+#### Step 3: Set Up Chrome with Dedicated Profile
+```bash
+# Create a new Chrome user data directory
+mkdir -p ~/chrome-gemini-profile
+
+# Launch Chrome with debugging enabled (ONLY for the dedicated account)
+# Linux/macOS:
+google-chrome --remote-debugging-port=9222 --user-data-dir="$HOME/chrome-gemini-profile" --no-first-run
+
+# Windows:
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222 --user-data-dir="%USERPROFILE%\chrome-gemini-profile" --no-first-run
+```
+
+#### Step 4: Login Once
+1. Chrome will open with a clean profile
+2. Navigate to [gemini.google.com](https://gemini.google.com)
+3. Login with your **dedicated account only**
+4. Verify Gemini Pro features are available
+
+#### Step 5: Use gemini-ask with Existing Session
+```bash
+# Connect to your existing Chrome session (don't auto-launch new Chrome)
+gemini-ask --no-auto-launch "What are the advanced features of Gemini Pro?"
+
+# The Chrome window will stay open with your session intact
+# No need to login again for future gemini-ask commands
+```
+
+### Alternative: Profile Copying (Higher Risk)
+
+If you prefer to copy an existing Chrome profile, follow these steps **at your own risk**:
+
+#### Chrome Profile Locations:
+```bash
+# Windows
+%LOCALAPPDATA%\Google\Chrome\User Data\Default
+
+# macOS  
+~/Library/Application Support/Google/Chrome/Default
+
+# Linux
+~/.config/google-chrome/Default
+```
+
+#### Copying Process:
+```bash
+# 1. COMPLETELY CLOSE Chrome first
+pkill chrome  # Linux/macOS
+# or Task Manager on Windows
+
+# 2. Copy profile to new location
+# Linux/macOS:
+cp -r ~/.config/google-chrome/Default ~/chrome-gemini-profile/Default
+
+# Windows (PowerShell):
+Copy-Item "$env:LOCALAPPDATA\Google\Chrome\User Data\Default" -Destination "$env:USERPROFILE\chrome-gemini-profile\Default" -Recurse
+
+# 3. Launch with debugging
+google-chrome --remote-debugging-port=9222 --user-data-dir="$HOME/chrome-gemini-profile"
+```
+
+⚠️ **This method exposes ALL your browser data to remote debugging access.**
+
+### Using Pro Features
+
+Once connected to a Gemini Pro session:
+
+```bash
+# Access Pro features through gemini-ask
+gemini-ask --no-auto-launch "Generate a detailed market analysis report"
+gemini-ask --no-auto-launch "Create a comprehensive business plan outline"
+gemini-ask --no-auto-launch "Analyze this data and provide insights: [your data]"
+
+# Your Pro subscription features like longer responses, 
+# advanced reasoning, and priority access will be available
+```
+
+### Command Options for Pro Usage
+
+```bash
+gemini-ask --no-auto-launch "Question"          # Connect to existing Chrome
+gemini-ask --cleanup-chrome "Question"          # Close Chrome when done
+gemini-ask --port 9223 --no-auto-launch "Q"    # Use different port
+gemini-ask --timeout 120 "Complex question"    # Longer timeout for Pro features
+```
+
+### Best Practices
+
+✅ **DO:**
+- Use a dedicated Google account for gemini-ask
+- Share Pro access via Google One family plan
+- Keep the Chrome window minimized during use
+- Close Chrome when finished with sensitive work
+
+❌ **DON'T:**
+- Use your main Google account with remote debugging
+- Enable debugging on browsers with personal data
+- Leave debugging enabled permanently
+- Share or expose the debugging port externally
+
 ## Troubleshooting
 
 ### Chrome not found
