@@ -154,6 +154,12 @@ Debugging:
         help="Close Chrome when done (if auto-launched)"
     )
     
+    parser.add_argument(
+        "--minimized", "-m",
+        action="store_true",
+        help="Start browser window minimized"
+    )
+    
     # Piping mode options
     parser.add_argument(
         "--pipe",
@@ -279,7 +285,8 @@ Debugging:
                     headless=args.headless,
                     screenshot_path=args.screenshot,
                     quiet=args.quiet,
-                    typing_speed=args.typing_speed
+                    typing_speed=args.typing_speed,
+                    minimized=args.minimized
                 )
                 
                 # System prompt is enabled by default with Canvas prevention

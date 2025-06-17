@@ -40,7 +40,7 @@ class GeminiAutomation:
     def __init__(self, devtools_port: int = 9222, host: str = "localhost", 
                  auto_launch: bool = True, headless: bool = False, 
                  user_data_dir: Optional[str] = None, screenshot_path: Optional[str] = None,
-                 quiet: bool = False, typing_speed: float = 0.05):
+                 quiet: bool = False, typing_speed: float = 0.05, minimized: bool = False):
         """
         Initialize the Gemini automation client
         
@@ -61,6 +61,7 @@ class GeminiAutomation:
         self.screenshot_path = screenshot_path
         self.quiet = quiet
         self.typing_speed = max(0.001, min(5.0, typing_speed))
+        self.minimized = minimized
         self.ws = None
         self.gemini_tab_id = None
         self.gemini_ws_url = None
@@ -154,6 +155,10 @@ class GeminiAutomation:
             self._send_command({"method": "Runtime.enable"})
             self._send_command({"method": "DOM.enable"})
             
+            # Minimize window if requested
+            if self.minimized:
+                self._minimize_window()
+            
             # Simple wait for page readiness
             self._print("⏳ Giving page time to load...")
             time.sleep(3)
@@ -189,6 +194,33 @@ class GeminiAutomation:
                 return response
             
             # Otherwise it's an event, continue reading
+    
+    def _minimize_window(self):
+        """Minimize the browser window using Chrome DevTools Protocol"""
+        try:
+            # Enable Browser domain
+            self._send_command({"method": "Browser.enable"})
+            
+            # Get window ID for current target
+            window_response = self._send_command({
+                "method": "Browser.getWindowForTarget",
+                "params": {}
+            })
+            
+            # Extract window ID and minimize
+            window_id = window_response['result']['windowId']
+            self._send_command({
+                "method": "Browser.setWindowBounds",
+                "params": {
+                    "windowId": window_id,
+                    "bounds": {
+                        "windowState": "minimized"
+                    }
+                }
+            })
+        except Exception:
+            # Don't fail if minimization fails
+            pass
     
     def wait_for_element(self, selector: str, timeout: int = 10) -> Optional[int]:
         """Wait for element to appear using DOM polling"""
