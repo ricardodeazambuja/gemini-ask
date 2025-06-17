@@ -40,7 +40,7 @@ class GeminiAutomation:
     def __init__(self, devtools_port: int = 9222, host: str = "localhost", 
                  auto_launch: bool = True, headless: bool = False, 
                  user_data_dir: Optional[str] = None, screenshot_path: Optional[str] = None,
-                 quiet: bool = False):
+                 quiet: bool = False, typing_speed: float = 0.05):
         """
         Initialize the Gemini automation client
         
@@ -60,6 +60,7 @@ class GeminiAutomation:
         self.headless = headless
         self.screenshot_path = screenshot_path
         self.quiet = quiet
+        self.typing_speed = max(0.001, min(5.0, typing_speed))
         self.ws = None
         self.gemini_tab_id = None
         self.gemini_ws_url = None
@@ -1234,7 +1235,7 @@ new Promise((resolve) => {{
                         "text": char
                     }
                 })
-                time.sleep(0.05)  # Reasonable typing speed
+                time.sleep(self.typing_speed)  # Configurable typing speed
             
             # Step 4: Submit the question
             print("4️⃣ Submitting question...")

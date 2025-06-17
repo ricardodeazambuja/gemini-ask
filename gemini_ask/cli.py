@@ -278,7 +278,8 @@ Debugging:
                     auto_launch=not args.no_auto_launch,
                     headless=args.headless,
                     screenshot_path=args.screenshot,
-                    quiet=args.quiet
+                    quiet=args.quiet,
+                    typing_speed=args.typing_speed
                 )
                 
                 # System prompt is enabled by default with Canvas prevention
