@@ -76,6 +76,8 @@ Advanced Options:
   gemini-ask --verbose "Question"                   # Detailed output
   gemini-ask --quiet "Question"                     # Minimal output
   gemini-ask --no-auto-launch "Question"            # Manual Chrome setup
+  gemini-ask --typing-speed 0.2 "Question"          # Slower typing
+  gemini-ask --minimized "Question"                 # Start minimized
 
 Chrome Management:
   gemini-ask --cleanup-chrome "Question"            # Close Chrome when done

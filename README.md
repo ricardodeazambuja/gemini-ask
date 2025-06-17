@@ -123,6 +123,8 @@ pip install .
 - Opens Gemini
 - Handles all the technical details
 
+*Tested on Google Chrome 137.0.7151.103 / Ubuntu 22.04.5 LTS*
+
 ## Advanced Usage
 
 ### Quiet Mode for Scripts
@@ -147,6 +149,21 @@ for topic in "AI" "Blockchain" "IoT"; do
 done
 ```
 
+### Performance & Interface Options
+```bash
+# Fast typing for quick questions
+gemini-ask --typing-speed 0.01 "What is 2+2?"
+
+# Slower typing for complex questions (more human-like)
+gemini-ask --typing-speed 0.5 "Write detailed analysis of..."
+
+# Background operation with minimized window
+gemini-ask --minimized "Question"
+
+# Silent background mode
+gemini-ask --minimized --quiet "Question" > output.txt
+```
+
 ### Command Options
 ```bash
 gemini-ask --help                           # Show all options
@@ -154,6 +171,8 @@ gemini-ask --show-prompt                    # Show current system prompt
 gemini-ask --timeout 60 "Complex question"  # Custom timeout
 gemini-ask --headless "Question"            # Run without GUI
 gemini-ask --verbose "Question"             # Show detailed info
+gemini-ask --typing-speed 0.2 "Question"   # Custom typing speed
+gemini-ask --minimized "Question"           # Start minimized
 ```
 
 ## Troubleshooting
@@ -244,6 +263,8 @@ finally:
 - `headless`: Run Chrome in headless mode (default: False)
 - `user_data_dir`: Custom Chrome user data directory (default: temp dir)
 - `quiet`: Suppress all output (default: False)
+- `typing_speed`: Typing speed in seconds per character (default: 0.05)
+- `minimized`: Start browser window minimized (default: False)
 
 #### Key Methods
 - `connect() -> bool`: Connect to Chrome DevTools and find Gemini tab
