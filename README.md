@@ -1,6 +1,6 @@
 # gemini-ask
 
-**Ask questions to Google Gemini from your command line**
+**An unofficial Python CLI for interacting directly with the gemini.google.com web interface.**
 
 Get instant AI answers without opening a browser, creating accounts, or managing API keys. Just install and ask!
 
